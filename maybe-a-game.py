@@ -46,7 +46,7 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 def message_display(text):
-    largeText = pygame.font.Font('freesansbold.ttf',60)
+    largeText = pygame.font.Font('freesansbold.ttf',20)
     TextSurf, TextRect = text_objects(text, largeText)
     TextRect.center = ((w/2),(h/2))
     ds.blit(TextSurf, TextRect)
@@ -151,12 +151,12 @@ while gameLoop:
         leftEye=eye_cascade.detectMultiScale(leftGrayROI)
 
 
-        if  (not len(leftEye) and not len(rightEye)):
+        if  ( len(leftEye) and len(rightEye)):
             blinkWink=True
             blinkWinkCounter+=1
             print "BLINK WINK COUNTER: " + str(blinkWinkCounter)
-            if (blinkWinkCounter>10):
-                print "blink"
+            if (blinkWinkCounter>3):
+                moveX=0
 
 
         else:
@@ -169,7 +169,8 @@ while gameLoop:
                 if (leftWinkCounter>3):
                     print "left wink"
                     moveX = -4
-
+                    leftWink=False
+                    leftWinkCounter=0
             else:
                 leftWink=False
                 leftWinkCounter=0
@@ -181,6 +182,8 @@ while gameLoop:
                 if (rightWinkCounter>3):
                     print "right wink"
                     moveX = 4
+                    rightWink=False
+                    rightWinkCounter=0
             else:
                 rightWink=False
                 rightWinkCounter=0
