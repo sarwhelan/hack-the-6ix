@@ -26,7 +26,6 @@ def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
-
 def message_display(text):
     largeText = pygame.font.Font('freesansbold.ttf',60)
     TextSurf, TextRect = text_objects(text, largeText)
@@ -52,7 +51,12 @@ class Sprite:
         self.y=y
         self.width = width
         self.height = height
-        self.image = pygame.image.load("piney.jpg")
+        if x == 111 and y == 111:
+            self.image = pygame.image.load("mrpoopybutthole.jpg")
+            self.x = 350
+            self.y = 350
+        else:
+            self.image = pygame.image.load("piney.jpg")
     def render(self,collision):
         if (collision == True): # make them red when there's a collision
             message_display("game ova!!!")
@@ -88,7 +92,7 @@ obstacle2=Sprite(200,50,51,93)
 obstacle3=Sprite(350,150,51,93)
 obstacle4=Sprite(500,200,51,93)
 
-dude=Sprite(350,350,100,100) # doodie @ bottom
+dude=Sprite(111,111,50,102) # doodie @ bottom
 moveX,moveY=0,0 # for dude
 obstaclesMoving = 0 # for obstacles -- going to have to decrease Y position
 
